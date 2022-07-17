@@ -72,15 +72,18 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
 #root {
     display: flex;
     flex-direction: column;
     min-width: 320px;
     min-height: 100vh;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
