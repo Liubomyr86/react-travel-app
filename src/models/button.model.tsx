@@ -1,4 +1,6 @@
-export interface IButtonProps {
+import { ButtonHTMLAttributes } from 'react';
+
+export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    style: string;
+    classes?: string;
 }

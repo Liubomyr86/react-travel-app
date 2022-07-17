@@ -1,13 +1,15 @@
 import React from 'react';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
+import SignUp from './components/sign-up/signUp';
 
 const App = (): JSX.Element => {
     return (
-        <div className='App'>
+        <>
             <Header />
+            <SignUp />
             <Footer />
-        </div>
+        </>
     );
 };
 
