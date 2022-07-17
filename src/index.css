@@ -105,7 +105,7 @@ main {
 img {
     display: block;
     max-width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 input,
@@ -166,7 +166,7 @@ select {
     font-size: var(--font-size-300);
     background-color: var(--color-white);
     background-color: var(--color-white);
-    /* background-image: url('../images/arrow-down.svg'); */
+    background-image: url('./assets/icons/arrow-down.svg');
     background-repeat: no-repeat;
     background-position: right 15px top 50%;
     background-size: 15px;
@@ -224,7 +224,7 @@ select {
 
 /* trip-info */
 
-.trip-info {
+/* .trip-info {
     width: 100%;
     max-width: 300px;
     padding-bottom: 10px;
@@ -246,7 +246,7 @@ select {
 .trip-info__duration {
     min-width: 120px;
     padding-left: 25px;
-    /* background-image: url('../images/calendar.svg'); */
+    background-image: url('./assets/icons/calendar.svg');
     background-repeat: no-repeat;
     background-position: 0 50%;
     background-size: 15px;
@@ -256,16 +256,16 @@ select {
     content: '•';
     margin-right: 10px;
     color: var(--color-blue-200);
-}
+} */
 
 /* trip-price */
 
-.trip-price__value {
+/* .trip-price__value {
     display: block;
     color: var(--color-blue-200);
     font-size: var(--font-size-600);
     line-height: 1;
-}
+} */
 
 /* layout */
 
@@ -393,7 +393,7 @@ select {
 
 /* sign in/sign up pages */
 
-.sign-up-page,
+/* .sign-up-page,
 .sign-in-page {
     justify-content: center;
     align-items: center;
@@ -426,13 +426,13 @@ select {
 .sign-up-form__link:hover,
 .sign-in-form__link:hover {
     color: var(--color-blue-300);
-}
+} */
 
 /* main-page */
 
 /* trips-filter */
 
-.trips-filter {
+/* .trips-filter {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -447,7 +447,7 @@ select {
     gap: 20px 25px;
     width: 100%;
     max-width: var(--container-width);
-}
+} */
 
 .trips-filter__search {
     width: 100%;
@@ -457,7 +457,7 @@ select {
 .trips-filter__search input {
     padding-left: 50px;
     background-color: var(--color-white);
-    /* background-image: url('../images/search.svg'); */
+    background-image: url('./assets/icons/search.svg');
     background-repeat: no-repeat;
     background-position: 15px 50%;
     background-size: 22px;
@@ -465,7 +465,7 @@ select {
 
 /* trips */
 
-.trips {
+/* .trips {
     padding: 60px 20px;
 }
 
@@ -478,9 +478,9 @@ select {
     margin: 0 auto;
     padding: 0;
     list-style: none;
-}
+} */
 
-.trip-card {
+/* .trip-card {
     display: flex;
     flex-direction: column;
     max-width: 320px;
@@ -494,7 +494,7 @@ select {
     flex-direction: column;
     gap: 15px;
     padding: 20px 30px;
-}
+} */
 
 /* trip-page */
 
