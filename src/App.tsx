@@ -1,4 +1,5 @@
 import React from 'react';
+import Modal from './components/common/modal/modal';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
 import Main from './components/main/main';
@@ -14,6 +15,7 @@ const App = (): JSX.Element => {
             <SignIn />
             <Main /> */}
             <TripPage />
+            <Modal />
             <Footer />
         </>
     );

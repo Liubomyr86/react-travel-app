@@ -536,7 +536,7 @@ select {
 
 /* trip-popup */
 
-.trip-popup {
+/* .trip-popup {
     position: relative;
     flex: 1;
     max-width: 380px;
@@ -579,7 +579,7 @@ select {
 .trip-popup__total-value {
     font-weight: 600;
     font-size: var(--font-size-400);
-}
+} */
 
 /* bookings-page */
 
