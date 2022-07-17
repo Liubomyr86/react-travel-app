@@ -1,7 +1,17 @@
 import React from 'react';
 import { IInputProps } from '../../../models/input.model';
 
-const Input: React.FC<IInputProps> = ({ name, type, required, placeholder, minLength, maxLength }): JSX.Element => {
+const Input: React.FC<IInputProps> = ({
+    name,
+    type,
+    required,
+    placeholder,
+    minLength,
+    maxLength,
+    max,
+    min,
+    value,
+}): JSX.Element => {
     return (
         <input
             name={name}
@@ -10,6 +20,9 @@ const Input: React.FC<IInputProps> = ({ name, type, required, placeholder, minLe
             placeholder={placeholder}
             minLength={minLength}
             maxLength={maxLength}
+            max={max}
+            min={min}
+            value={value}
         />
     );
 };

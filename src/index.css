@@ -498,7 +498,7 @@ select {
 
 /* trip-page */
 
-.trip-page {
+/* .trip-page {
     padding: 60px 20px;
 }
 
@@ -532,11 +532,11 @@ select {
 
 .trip__button {
     max-width: 200px;
-}
+} */
 
 /* trip-popup */
 
-.trip-popup {
+/* .trip-popup {
     position: relative;
     flex: 1;
     max-width: 380px;
@@ -579,7 +579,7 @@ select {
 .trip-popup__total-value {
     font-weight: 600;
     font-size: var(--font-size-400);
-}
+} */
 
 /* bookings-page */
 
