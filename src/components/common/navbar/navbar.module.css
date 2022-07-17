@@ -26,6 +26,10 @@
     height: 100%;
 }
 
+.navHeaderInner img {
+    height: auto;
+}
+
 /* profile-nav */
 
 .profileNav {

@@ -9,8 +9,8 @@ const App = (): JSX.Element => {
     return (
         <>
             <Header />
-            {/* <SignUp />
-            <SignIn /> */}
+            <SignUp />
+            <SignIn />
             <Main />
             <Footer />
         </>

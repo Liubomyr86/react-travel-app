@@ -2,8 +2,13 @@ import React from 'react';
 import Input from '../common/input/input';
 import Label from '../common/label/label';
 import Select from '../common/select/select';
+import data from '../../mocks/trips.json';
+import TripCard from '../common/trip-card/tripCard';
+import styles from './main.module.css';
 
 const Main = (): JSX.Element => {
+    const tripData = data;
+
     const inputClasses = ['trips-filter__search input', 'visually-hidden'];
     const selectClasses = ['select', 'visually-hidden'];
     const durationOptions = [
@@ -20,9 +25,9 @@ const Main = (): JSX.Element => {
     return (
         <main>
             <h1 className='visually-hidden'>Travel App</h1>
-            <section className='trips-filter'>
+            <section className={styles.tripsFilter}>
                 <h2 className='visually-hidden'>Trips filter</h2>
-                <form className='trips-filter__form' autoComplete='off'>
+                <form className={styles.tripsFilterForm} autoComplete='off'>
                     <Label inputHeadingName='Search by name' classes={inputClasses}>
                         <Input name='search' type='search' placeholder='search by title' />
                     </Label>
@@ -34,93 +39,19 @@ const Main = (): JSX.Element => {
                     </Label>
                 </form>
             </section>
-            <section className='trips'>
+            <section className={styles.trips}>
                 <h2 className='visually-hidden'>Trips List</h2>
-                <ul className='trip-list'>
-                    <li className='trip-card'>
-                        <img src='./assets/images/iceland.jpg' alt='trip image' />
-                        <div className='trip-card__content'>
-                            <div className='trip-info'>
-                                <h3 className='trip-info__title'>Iceland</h3>
-                                <div className='trip-info__content'>
-                                    <span className='trip-info__duration'>
-                                        <strong>15</strong> days
-                                    </span>
-                                    <span className='trip-info__level'>easy</span>
-                                </div>
-                            </div>
-                            <div className='trip-price'>
-                                <span>Price</span>
-                                <strong className='trip-price__value'>7000 $</strong>
-                            </div>
-                        </div>
-                        <a href='./trip.html' className='button'>
-                            Discover a trip
-                        </a>
-                    </li>
-                    <li className='trip-card'>
-                        <img src='./assets/images/iceland.jpg' alt='trip image' />
-                        <div className='trip-card__content'>
-                            <div className='trip-info'>
-                                <h3 className='trip-info__title'>Iceland</h3>
-                                <div className='trip-info__content'>
-                                    <span className='trip-info__duration'>
-                                        <strong>15</strong> days
-                                    </span>
-                                    <span className='trip-info__level'>easy</span>
-                                </div>
-                            </div>
-                            <div className='trip-price'>
-                                <span>Price</span>
-                                <strong className='trip-price__value'>7000 $</strong>
-                            </div>
-                        </div>
-                        <a href='./trip.html' className='button'>
-                            Discover a trip
-                        </a>
-                    </li>
-                    <li className='trip-card'>
-                        <img src='./assets/images/iceland.jpg' alt='trip image' />
-                        <div className='trip-card__content'>
-                            <div className='trip-info'>
-                                <h3 className='trip-info__title'>Iceland</h3>
-                                <div className='trip-info__content'>
-                                    <span className='trip-info__duration'>
-                                        <strong>15</strong> days
-                                    </span>
-                                    <span className='trip-info__level'>easy</span>
-                                </div>
-                            </div>
-                            <div className='trip-price'>
-                                <span>Price</span>
-                                <strong className='trip-price__value'>7000 $</strong>
-                            </div>
-                        </div>
-                        <a href='./trip.html' className='button'>
-                            Discover a trip
-                        </a>
-                    </li>
-                    <li className='trip-card'>
-                        <img src='./assets/images/iceland.jpg' alt='trip image' />
-                        <div className='trip-card__content'>
-                            <div className='trip-info'>
-                                <h3 className='trip-info__title'>Iceland</h3>
-                                <div className='trip-info__content'>
-                                    <span className='trip-info__duration'>
-                                        <strong>15</strong> days
-                                    </span>
-                                    <span className='trip-info__level'>easy</span>
-                                </div>
-                            </div>
-                            <div className='trip-price'>
-                                <span>Price</span>
-                                <strong className='trip-price__value'>7000 $</strong>
-                            </div>
-                        </div>
-                        <a href='./trip.html' className='button'>
-                            Discover a trip
-                        </a>
-                    </li>
+                <ul className={styles.tripList}>
+                    {tripData.map((tripCard) => (
+                        <TripCard
+                            key={tripCard.id}
+                            image={tripCard.image}
+                            title={tripCard.title}
+                            duration={tripCard.duration}
+                            level={tripCard.level}
+                            price={tripCard.price}
+                        />
+                    ))}
                 </ul>
             </section>
         </main>

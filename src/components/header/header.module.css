@@ -4,7 +4,7 @@
     border-bottom: 1px solid var(--color-gray);
 }
 
-.header__inner {
+.headerInner {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -12,7 +12,7 @@
     margin: 0 auto;
 }
 
-.header__logo {
+.headerLogo {
     margin: 0;
     color: var(--color-blue-400);
     font-weight: 600;

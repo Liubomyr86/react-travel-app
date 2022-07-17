@@ -1,0 +1,35 @@
+/* trips-filter */
+
+.tripsFilter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    padding: 20px;
+    background-color: var(--color-blue-400);
+}
+
+.tripsFilterForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 25px;
+    width: 100%;
+    max-width: var(--container-width);
+}
+
+/* trips */
+
+.trips {
+    padding: 60px 20px;
+}
+
+.tripList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, auto));
+    justify-content: center;
+    gap: 30px;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
