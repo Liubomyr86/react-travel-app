@@ -21,7 +21,7 @@ const Navbar = (): JSX.Element => {
                         <ul className={styles.profileNavList}>
                             <li className={styles.profileNavItem}>John Doe</li>
                             <li className={styles.profileNavItem}>
-                                <Button style={styles.profileNavSignOut}>Sign Out</Button>
+                                <Button classes={styles.profileNavSignOut}>Sign Out</Button>
                             </li>
                         </ul>
                     </div>
