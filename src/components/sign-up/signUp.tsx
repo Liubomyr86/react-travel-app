@@ -4,7 +4,7 @@ import Input from '../common/input/input';
 import Label from '../common/label/label';
 
 const SignUp = (): JSX.Element => {
-    const classes = ['trip-popup__input', 'input', 'input__heading'];
+    const classes = ['trip-popup__input input', 'input__heading'];
 
     return (
         <main className='sign-up-page'>
