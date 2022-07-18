@@ -5,10 +5,11 @@ import Label from '../label/label';
 import TripCardInfo from '../trip-card-info/tripCardInfo';
 import styles from './modal.module.css';
 import data from '../../../mocks/trips.json';
+import { getCurrentDate } from '../../../helpers/index';
 
 const Modal = (): JSX.Element => {
     const classes = ['trip-popup__input input', 'input__heading'];
-    const currentDate = new Date().toJSON().slice(0, 10);
+    const currentDate = getCurrentDate();
     const tripData = data;
     const { title, duration, level } = tripData[0];
 

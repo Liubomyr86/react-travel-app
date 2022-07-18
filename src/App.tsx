@@ -1,4 +1,5 @@
 import React from 'react';
+import Bookings from './components/bookings/bookings';
 import Modal from './components/common/modal/modal';
 import Footer from './components/footer/footer';
 import Header from './components/header/header';
@@ -13,9 +14,10 @@ const App = (): JSX.Element => {
             <Header />
             {/* <SignUp />
             <SignIn />
-            <Main /> */}
+            <Main />
             <TripPage />
-            <Modal />
+            <Modal /> */}
+            <Bookings />
             <Footer />
         </>
     );
