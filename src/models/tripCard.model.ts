@@ -5,6 +5,8 @@ export interface ITripCardProps {
     level?: string;
     price?: number;
     description?: string;
+    id?: string;
+    createdAt?: string;
 }
 
 export interface ITripCardDescriptionProps {

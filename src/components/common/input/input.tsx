@@ -11,6 +11,7 @@ const Input: React.FC<IInputProps> = ({
     max,
     min,
     value,
+    onChange,
 }): JSX.Element => {
     return (
         <input
@@ -23,6 +24,7 @@ const Input: React.FC<IInputProps> = ({
             max={max}
             min={min}
             value={value}
+            onChange={onChange}
         />
     );
 };

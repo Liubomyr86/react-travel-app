@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { FormEvent, useContext } from 'react';
+import { Link } from 'react-router-dom';
+import { Context } from '../../context';
 import Button from '../common/button/button';
 import Input from '../common/input/input';
 import Label from '../common/label/label';
@@ -6,11 +8,17 @@ import styles from './signIn.module.css';
 
 const SignIn = (): JSX.Element => {
     const classes = ['trip-popup__input input', 'input__heading'];
+    const { setIsAuth } = useContext(Context);
+    const login = (event: FormEvent): void => {
+        event.preventDefault();
+        setIsAuth!(true);
+        localStorage.setItem('auth', 'true');
+    };
 
     return (
         <main className={styles.signInPage}>
             <h1 className='visually-hidden'>Travel App</h1>
-            <form className={styles.signInForm} autoComplete='off'>
+            <form className={styles.signInForm} autoComplete='off' onSubmit={login}>
                 <h2 className={styles.signInFormTitle}>Sign In</h2>
                 <Label inputHeadingName='Email' classes={classes}>
                     <Input name='email' type='email' required={true} />
@@ -29,9 +37,9 @@ const SignIn = (): JSX.Element => {
             </form>
             <span>
                 Don&apos;t have an account?
-                <a href='./sign-up.html' className={styles.signInFormLink}>
+                <Link to='/sign-up' className={styles.signInFormLink}>
                     Sign Up
-                </a>
+                </Link>
             </span>
         </main>
     );

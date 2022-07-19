@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import Button from '../common/button/button';
 import TripCardDescription from '../common/trip-card-description/tripCardDescription';
 import styles from './tripPage.module.css';
-import data from '../../mocks/trips.json';
 import TripCardInfo from '../common/trip-card-info/tripCardInfo';
 import TripCardPrice from '../common/trip-card-price/tripCardPrice';
+import { Context } from '../../context';
+import { useParams } from 'react-router-dom';
 
 const TripPage = (): JSX.Element => {
-    const tripData = data;
-    const { image, title, duration, level, price, description } = tripData[0];
+    const { tripId } = useParams();
+    const { data } = useContext(Context);
+    const trip = data?.find((item) => item.id === tripId);
+    const [tripData, setTripData] = useState(trip);
+    const { image, title, duration, level, price, description } = tripData!;
+
     return (
         <main className={styles.tripPage}>
             <h1 className='visually-hidden'>Travel App</h1>
