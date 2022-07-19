@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Button from '../common/button/button';
 import TripCardDescription from '../common/trip-card-description/tripCardDescription';
-import styles from './tripPage.module.css';
 import TripCardInfo from '../common/trip-card-info/tripCardInfo';
 import TripCardPrice from '../common/trip-card-price/tripCardPrice';
 import { Context } from '../../context';
@@ -18,15 +17,15 @@ const TripPage = (): JSX.Element => {
     const { image, title, duration, level, price, description } = tripData!;
 
     return (
-        <main className={styles.tripPage}>
+        <main className='trip-page'>
             <h1 className='visually-hidden'>Travel App</h1>
-            <div className={styles.trip}>
-                <img src={image} className={styles.tripImg} alt='trip image' />
-                <div className={styles.tripContent}>
+            <div className='trip'>
+                <img src={image} className='trip__img' alt='trip image' />
+                <div className='trip__content'>
                     <TripCardInfo title={title} duration={duration} level={level} />
-                    <TripCardDescription classes={styles.tripDescription} description={description} />
+                    <TripCardDescription classes='trip__description' description={description} />
                     <TripCardPrice price={price} />
-                    <Button classes={styles.tripButton} onClick={() => setModal(false)}>
+                    <Button classes='trip__button' onClick={() => setModal(false)}>
                         Book a trip
                     </Button>
                 </div>

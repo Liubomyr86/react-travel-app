@@ -5,7 +5,6 @@ import Input from '../common/input/input';
 import Label from '../common/label/label';
 import Select from '../common/select/select';
 import TripCard from '../common/trip-card/tripCard';
-import styles from './main.module.css';
 
 const Main = (): JSX.Element => {
     const { data } = useContext(Context);
@@ -58,9 +57,9 @@ const Main = (): JSX.Element => {
     return (
         <main>
             <h1 className='visually-hidden'>Travel App</h1>
-            <section className={styles.tripsFilter}>
+            <section className='trips-filter'>
                 <h2 className='visually-hidden'>Trips filter</h2>
-                <form className={styles.tripsFilterForm} autoComplete='off'>
+                <form className='trips-filter__form' autoComplete='off'>
                     <Label inputHeadingName='Search by name' classes={inputClasses}>
                         <Input
                             name='search'
@@ -90,9 +89,9 @@ const Main = (): JSX.Element => {
                     </Label>
                 </form>
             </section>
-            <section className={styles.trips}>
+            <section className='trips'>
                 <h2 className='visually-hidden'>Trips List</h2>
-                <ul className={styles.tripList}>
+                <ul className='trip-list'>
                     {tripsData!.map((tripCard) => (
                         <TripCard
                             key={tripCard.id}

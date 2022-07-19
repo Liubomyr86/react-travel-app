@@ -4,7 +4,6 @@ import { Context } from '../../context';
 import Button from '../common/button/button';
 import Input from '../common/input/input';
 import Label from '../common/label/label';
-import styles from './signIn.module.css';
 
 const SignIn = (): JSX.Element => {
     const classes = ['trip-popup__input input', 'input__heading'];
@@ -16,10 +15,10 @@ const SignIn = (): JSX.Element => {
     };
 
     return (
-        <main className={styles.signInPage}>
+        <main className='sign-in-page'>
             <h1 className='visually-hidden'>Travel App</h1>
-            <form className={styles.signInForm} autoComplete='off' onSubmit={login}>
-                <h2 className={styles.signInFormTitle}>Sign In</h2>
+            <form className='sign-in-form' autoComplete='off' onSubmit={login}>
+                <h2 className='sign-in-form__title'>Sign In</h2>
                 <Label inputHeadingName='Email' classes={classes}>
                     <Input name='email' type='email' required={true} />
                 </Label>
@@ -37,7 +36,7 @@ const SignIn = (): JSX.Element => {
             </form>
             <span>
                 Don&apos;t have an account?
-                <Link to='/sign-up' className={styles.signInFormLink}>
+                <Link to='/sign-up' className='sign-in-form__link'>
                     Sign Up
                 </Link>
             </span>
