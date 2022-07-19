@@ -1,8 +1,9 @@
+import { Dispatch, SetStateAction } from 'react';
 import { ITripCardProps } from './tripCard.model';
 
 export interface IContextValue {
     isAuth?: boolean;
-    setIsAuth?: (isAuth: boolean) => void;
+    setIsAuth?: Dispatch<SetStateAction<boolean>>;
     isLoading?: boolean;
     data?: ITripCardProps[];
 }

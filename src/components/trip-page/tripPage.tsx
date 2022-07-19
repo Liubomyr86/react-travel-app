@@ -6,12 +6,15 @@ import TripCardInfo from '../common/trip-card-info/tripCardInfo';
 import TripCardPrice from '../common/trip-card-price/tripCardPrice';
 import { Context } from '../../context';
 import { useParams } from 'react-router-dom';
+import Modal from '../common/modal/modal';
 
 const TripPage = (): JSX.Element => {
     const { tripId } = useParams();
     const { data } = useContext(Context);
     const trip = data?.find((item) => item.id === tripId);
     const [tripData, setTripData] = useState(trip);
+    const [modal, setModal] = useState(true);
+
     const { image, title, duration, level, price, description } = tripData!;
 
     return (
@@ -23,9 +26,19 @@ const TripPage = (): JSX.Element => {
                     <TripCardInfo title={title} duration={duration} level={level} />
                     <TripCardDescription classes={styles.tripDescription} description={description} />
                     <TripCardPrice price={price} />
-                    <Button classes={styles.tripButton}>Book a trip</Button>
+                    <Button classes={styles.tripButton} onClick={() => setModal(false)}>
+                        Book a trip
+                    </Button>
                 </div>
             </div>
+            <Modal
+                visible={modal}
+                setModal={setModal}
+                title={title!}
+                duration={duration!}
+                level={level!}
+                price={price!}
+            />
         </main>
     );
 };

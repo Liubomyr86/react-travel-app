@@ -3,7 +3,7 @@ import { formatDate } from '../../../helpers/index';
 import { IBookingProps } from '../../../models/booking.model';
 import Button from '../button/button';
 
-const Booking: React.FC<IBookingProps> = ({ title, guests, date, price }): JSX.Element => {
+const Booking: React.FC<IBookingProps> = ({ title, guests, date, price, handleClick }): JSX.Element => {
     const formattedDate = formatDate(date);
 
     return (
@@ -12,7 +12,7 @@ const Booking: React.FC<IBookingProps> = ({ title, guests, date, price }): JSX.E
             <span className='booking__guests'>{`${guests} guests`}</span>
             <span className='booking__date'>{formattedDate}</span>
             <span className='booking__total'>{`${price} $`}</span>
-            <Button classes='booking__cancel' title='Cancel booking' flag={false}>
+            <Button classes='booking__cancel' title='Cancel booking' flag={false} onClick={handleClick}>
                 <span className='visually-hidden'>Cancel booking</span>×
             </Button>
         </li>
