@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../../context';
-import Navbar from '../common/navbar/navbar';
+import { Context } from 'context';
+import Navbar from 'components/common/navbar/navbar';
 
 const Header = (): JSX.Element => {
     const { isAuth } = useContext(Context);

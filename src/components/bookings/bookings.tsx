@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Booking from '../common/booking/booking';
-import data from '../../mocks/bookings.json';
-import { sortBookingsData } from '../../helpers';
+import Booking from 'components/common/booking/booking';
+import data from 'mocks/bookings.json';
+import { sortBookingsData } from 'helpers';
 
 const Bookings = (): JSX.Element => {
     const bookingsData = sortBookingsData(data);

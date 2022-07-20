@@ -1,5 +1,5 @@
 import React from 'react';
-import { IButtonProps } from '../../../models/button.model';
+import { IButtonProps } from 'models/button.model';
 
 const Button: React.FC<IButtonProps> = ({ children, type, classes, flag = true, onClick }): JSX.Element => {
     return (

@@ -1,10 +1,10 @@
 import React, { ChangeEvent, ChangeEventHandler, useContext, useState } from 'react';
-import { Context } from '../../context';
-import { filterByDuration, filterByLevel, filterBySearchValue } from '../../helpers';
-import Input from '../common/input/input';
-import Label from '../common/label/label';
-import Select from '../common/select/select';
-import TripCard from '../common/trip-card/tripCard';
+import { Context } from 'context';
+import { filterByDuration, filterByLevel, filterBySearchValue } from 'helpers';
+import Input from 'components/common/input/input';
+import Label from 'components/common/label/label';
+import Select from 'components/common/select/select';
+import TripCard from 'components/common/trip-card/tripCard';
 
 const Main = (): JSX.Element => {
     const { data } = useContext(Context);

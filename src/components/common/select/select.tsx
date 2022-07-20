@@ -1,5 +1,5 @@
 import React from 'react';
-import { ISelectProps } from '../../../models/select.model';
+import { ISelectProps } from 'models/select.model';
 
 const Select: React.FC<ISelectProps> = ({ options, defaultValue, name, value, onChange }): JSX.Element => {
     return (

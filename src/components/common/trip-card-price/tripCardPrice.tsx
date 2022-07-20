@@ -1,5 +1,5 @@
 import React from 'react';
-import { ITripCardProps } from '../../../models/tripCard.model';
+import { ITripCardProps } from 'models/tripCard.model';
 
 const TripCardPrice: React.FC<ITripCardProps> = ({ price }) => {
     return (

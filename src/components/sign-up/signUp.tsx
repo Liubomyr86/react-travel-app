@@ -1,9 +1,9 @@
 import React, { FormEvent, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../../context';
-import Button from '../common/button/button';
-import Input from '../common/input/input';
-import Label from '../common/label/label';
+import { Context } from 'context';
+import Button from 'components/common/button/button';
+import Input from 'components/common/input/input';
+import Label from 'components/common/label/label';
 
 const SignUp = (): JSX.Element => {
     const classes = ['trip-popup__input input', 'input__heading'];

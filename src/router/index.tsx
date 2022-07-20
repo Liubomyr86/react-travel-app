@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom';
 
-import TripPage from '../components/trip-page/tripPage';
-import SignIn from '../components/sign-in/signIn';
-import SignUp from '../components/sign-up/signUp';
-import Main from '../components/main/main';
-import Bookings from '../components/bookings/bookings';
+import TripPage from 'components/trip-page/tripPage';
+import SignIn from 'components/sign-in/signIn';
+import SignUp from 'components/sign-up/signUp';
+import Main from 'components/main/main';
+import Bookings from 'components/bookings/bookings';
 
 export const privateRoutes: { path: string; element: JSX.Element }[] = [
     { path: '/', element: <Main /> },

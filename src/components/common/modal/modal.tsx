@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import Button from '../button/button';
-import Input from '../input/input';
-import Label from '../label/label';
-import TripCardInfo from '../trip-card-info/tripCardInfo';
-import { getCurrentDate } from '../../../helpers/index';
-import { IModalProps } from '../../../models/modal.model';
+import Button from 'components/common/button/button';
+import Input from 'components/common/input/input';
+import Label from 'components/common/label/label';
+import TripCardInfo from 'components/common/trip-card-info/tripCardInfo';
+import { getCurrentDate } from 'helpers/index';
+import { IModalProps } from 'models/modal.model';
 
 const Modal: React.FC<IModalProps> = ({ visible, setModal, title, duration, level, price }): JSX.Element => {
     const [totalPrice, setTotalPrice] = useState(price);

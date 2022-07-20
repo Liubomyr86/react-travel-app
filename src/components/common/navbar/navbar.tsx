@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import Button from '../button/button';
-import briefcase from '../../../assets/icons/briefcase.svg';
-import user from '../../../assets/icons/user.svg';
+import Button from 'components/common/button/button';
+import briefcase from 'assets/icons/briefcase.svg';
+import user from 'assets/icons/user.svg';
 import { Link } from 'react-router-dom';
-import { Context } from '../../../context';
+import { Context } from 'context';
 
 const Navbar = (): JSX.Element => {
     const { setIsAuth } = useContext(Context);

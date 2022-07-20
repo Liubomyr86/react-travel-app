@@ -1,5 +1,5 @@
 import React from 'react';
-import heart from '../../assets/icons/heart.svg';
+import heart from 'assets/icons/heart.svg';
 
 const Footer = (): JSX.Element => {
     return (

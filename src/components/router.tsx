@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Context } from '../context';
-import { privateRoutes, publicRoutes } from '../router';
-import Loader from './common/loader/loader';
+import { Context } from 'context';
+import { privateRoutes, publicRoutes } from 'router';
+import Loader from 'components/common/loader/loader';
 
 const Router = (): JSX.Element => {
     const { isAuth, isLoading } = useContext(Context);

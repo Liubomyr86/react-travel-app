@@ -1,5 +1,5 @@
 import React from 'react';
-import { ILableProps } from '../../../models/label.model';
+import { ILableProps } from 'models/label.model';
 
 const Label: React.FC<ILableProps> = ({ children, inputHeadingName, classes }): JSX.Element => {
     return (

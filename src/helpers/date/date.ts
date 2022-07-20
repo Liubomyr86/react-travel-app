@@ -1,2 +1,2 @@
-export { formatDate } from './formatDate/formatDate';
-export { getCurrentDate } from './getCurrentDate/getCurrentDate';
+export { formatDate } from 'helpers/date/formatDate/formatDate';
+export { getCurrentDate } from 'helpers/date/getCurrentDate/getCurrentDate';

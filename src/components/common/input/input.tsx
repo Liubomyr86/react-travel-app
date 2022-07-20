@@ -1,5 +1,5 @@
 import React from 'react';
-import { IInputProps } from '../../../models/input.model';
+import { IInputProps } from 'models/input.model';
 
 const Input: React.FC<IInputProps> = ({
     name,

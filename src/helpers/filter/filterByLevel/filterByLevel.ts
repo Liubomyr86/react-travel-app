@@ -1,4 +1,4 @@
-import { ITripCardProps } from '../../../models/tripCard.model';
+import { ITripCardProps } from 'models/tripCard.model';
 
 export const filterByLevel = (filteredData: ITripCardProps[], value: string): ITripCardProps[] => {
     if (!value) {

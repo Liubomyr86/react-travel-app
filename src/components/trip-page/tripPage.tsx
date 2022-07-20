@@ -1,11 +1,11 @@
 import React, { useContext, useState } from 'react';
-import Button from '../common/button/button';
-import TripCardDescription from '../common/trip-card-description/tripCardDescription';
-import TripCardInfo from '../common/trip-card-info/tripCardInfo';
-import TripCardPrice from '../common/trip-card-price/tripCardPrice';
-import { Context } from '../../context';
+import Button from 'components/common/button/button';
+import TripCardDescription from 'components/common/trip-card-description/tripCardDescription';
+import TripCardInfo from 'components/common/trip-card-info/tripCardInfo';
+import TripCardPrice from 'components/common/trip-card-price/tripCardPrice';
+import { Context } from 'context';
 import { useParams } from 'react-router-dom';
-import Modal from '../common/modal/modal';
+import Modal from 'components/common/modal/modal';
 
 const TripPage = (): JSX.Element => {
     const { tripId } = useParams();
