@@ -1,18 +1,25 @@
-import React, { FormEvent, useContext } from 'react';
+import React, { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from 'context';
 import Button from 'components/common/button/button';
 import Input from 'components/common/input/input';
 import Label from 'components/common/label/label';
+import { useAppDispatch } from 'hooks/hooks';
+import { profileActionCreator } from 'state/actions';
 
 const SignUp = (): JSX.Element => {
-    const classes = ['trip-popup__input input', 'input__heading'];
-    const { setIsAuth } = useContext(Context);
+    const dispatch = useAppDispatch();
+
     const login = (event: FormEvent): void => {
         event.preventDefault();
-        setIsAuth!(true);
-        localStorage.setItem('auth', 'true');
+        const payload = {
+            fullName: ((event.target as HTMLFormElement)[0] as HTMLInputElement).value,
+            email: ((event.target as HTMLFormElement)[1] as HTMLInputElement).value,
+            password: ((event.target as HTMLFormElement)[2] as HTMLInputElement).value,
+        };
+        dispatch(profileActionCreator.signUp(payload));
     };
+
+    const classes = ['trip-popup__input input', 'input__heading'];
 
     return (
         <main className='sign-up-page'>

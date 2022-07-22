@@ -11,5 +11,10 @@ export interface IFetchOptions {
 }
 
 export interface IResponse {
-    [key: string]: string | number | boolean;
+    [key: string]: string | number | boolean | IQuery;
+}
+
+export interface IHeaders {
+    contentType: string | undefined;
+    hasAuth: boolean;
 }

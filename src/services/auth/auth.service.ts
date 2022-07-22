@@ -1,4 +1,5 @@
 import { ApiPath, AuthApiPath, HttpMethod, ContentType } from 'common/enums/enums';
+import { IQuery, IResponse } from 'models/api.model';
 import { Http } from 'services/http/http.service';
 
 class Auth {
@@ -10,7 +11,7 @@ class Auth {
         this.http = http;
     }
 
-    login(payload: { [key: string]: string }) {
+    login(payload: IQuery): Promise<IResponse> {
         return this.http.load(`${this.apiPath}${ApiPath.AUTH}${AuthApiPath.SIGN_IN}`, {
             method: HttpMethod.POST,
             contentType: ContentType.JSON,
@@ -19,7 +20,7 @@ class Auth {
         });
     }
 
-    registration(payload: { [key: string]: string }) {
+    registration(payload: IQuery): Promise<IResponse> {
         return this.http.load(`${this.apiPath}${ApiPath.AUTH}${AuthApiPath.SIGN_UP}`, {
             method: HttpMethod.POST,
             contentType: ContentType.JSON,
@@ -28,7 +29,7 @@ class Auth {
         });
     }
 
-    getCurrentUser() {
+    getCurrentUser(): Promise<IResponse> {
         return this.http.load(`${this.apiPath}${ApiPath.AUTH}${AuthApiPath.AUTHENTICATED_USER}`, {
             method: HttpMethod.GET,
         });

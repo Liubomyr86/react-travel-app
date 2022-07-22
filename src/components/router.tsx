@@ -1,20 +1,17 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Context } from 'context';
 import { privateRoutes, publicRoutes } from 'router';
 import Loader from 'components/common/loader/loader';
+import { IRouterProps } from 'models/router.model';
 
-const Router = (): JSX.Element => {
-    const { isAuth, isLoading } = useContext(Context);
-
-    if (isLoading) {
+const Router: React.FC<IRouterProps> = ({ hasToken, hasUser }): JSX.Element => {
+    if (!hasUser && hasToken) {
         return <Loader />;
     }
-    // const isAuth = false;
 
     return (
         <Routes>
-            {isAuth
+            {hasToken
                 ? privateRoutes.map((route) => <Route path={route.path} element={route.element} key={route.path} />)
                 : publicRoutes.map((route) => <Route path={route.path} element={route.element} key={route.path} />)}
         </Routes>

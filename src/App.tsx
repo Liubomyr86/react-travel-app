@@ -1,38 +1,34 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect } from 'react';
 import Footer from 'components/footer/footer';
 import Header from 'components/header/header';
 import Router from 'components/router';
-import { Context } from 'context';
-import tripsData from 'mocks/trips.json';
+import { storage } from 'services/services';
+import { StorageKey } from 'common/enums/app/storage-key';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { profileActionCreator } from 'state/actions';
 
 const App = (): JSX.Element => {
-    const [data, setData] = useState(tripsData);
-    const [isAuth, setIsAuth] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const { user } = useAppSelector((state) => ({
+        user: state.profile.user,
+    }));
+    const dispatch = useAppDispatch();
 
-    const contextValue = useMemo(
-        () => ({
-            isAuth,
-            setIsAuth,
-            isLoading,
-            data,
-        }),
-        [isAuth, isLoading],
-    );
+    const hasToken = Boolean(storage.getItem(StorageKey.TOKEN));
+    const hasUser = Boolean(user);
 
     useEffect(() => {
-        if (localStorage.getItem('auth')) {
-            setIsAuth(true);
+        if (hasToken) {
+            dispatch(profileActionCreator.loadCurrentUser());
+            console.log(hasToken);
         }
-        setIsLoading(false);
-    }, []);
+    }, [hasToken, dispatch]);
 
     return (
-        <Context.Provider value={contextValue}>
+        <>
             <Header />
-            <Router />
+            <Router hasUser={hasUser} hasToken={hasToken} />
             <Footer />
-        </Context.Provider>
+        </>
     );
 };
 
