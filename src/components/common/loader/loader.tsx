@@ -1,7 +1,11 @@
 import React from 'react';
 
 const Loader = (): JSX.Element => {
-    return <div className='loader'></div>;
+    return (
+        <main className='loader-container'>
+            <div className='loader'></div>
+        </main>
+    );
 };
 
 export default Loader;

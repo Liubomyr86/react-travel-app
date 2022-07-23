@@ -1,10 +1,15 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Context } from 'context';
 import Navbar from 'components/common/navbar/navbar';
+import { useAppSelector } from 'hooks/hooks';
 
 const Header = (): JSX.Element => {
-    const { isAuth } = useContext(Context);
+    const { user } = useAppSelector((state) => ({
+        user: state.profile.user,
+    }));
+
+    const hasUser = Boolean(user);
 
     return (
         <header className='header'>
@@ -12,7 +17,7 @@ const Header = (): JSX.Element => {
                 <Link to='/' className='header__logo'>
                     Travel App
                 </Link>
-                {isAuth && <Navbar />}
+                {hasUser && <Navbar />}
             </div>
         </header>
     );

@@ -10,7 +10,7 @@ class Http {
     constructor({ storage }: { storage: Storage }) {
         this.storage = storage;
     }
-    async load(url: string, options: IFetchOptions): Promise<IResponse> {
+    async load(url: string, options: IFetchOptions): Promise<IResponse | IResponse[]> {
         const { method = HttpMethod.GET, payload = null, hasAuth = true, contentType } = options;
         const headers = this.getHeaders({ contentType, hasAuth });
 

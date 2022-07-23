@@ -11,7 +11,7 @@ class Auth {
         this.http = http;
     }
 
-    login(payload: IQuery): Promise<IResponse> {
+    login(payload: IQuery): Promise<IResponse | IResponse[]> {
         return this.http.load(`${this.apiPath}${ApiPath.AUTH}${AuthApiPath.SIGN_IN}`, {
             method: HttpMethod.POST,
             contentType: ContentType.JSON,
@@ -20,7 +20,7 @@ class Auth {
         });
     }
 
-    registration(payload: IQuery): Promise<IResponse> {
+    registration(payload: IQuery): Promise<IResponse | IResponse[]> {
         return this.http.load(`${this.apiPath}${ApiPath.AUTH}${AuthApiPath.SIGN_UP}`, {
             method: HttpMethod.POST,
             contentType: ContentType.JSON,
@@ -29,7 +29,7 @@ class Auth {
         });
     }
 
-    getCurrentUser(): Promise<IResponse> {
+    getCurrentUser(): Promise<IResponse | IResponse[]> {
         return this.http.load(`${this.apiPath}${ApiPath.AUTH}${AuthApiPath.AUTHENTICATED_USER}`, {
             method: HttpMethod.GET,
         });

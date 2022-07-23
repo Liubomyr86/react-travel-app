@@ -1,15 +1,18 @@
 import React, { useContext } from 'react';
 import Button from 'components/common/button/button';
 import briefcase from 'assets/icons/briefcase.svg';
-import user from 'assets/icons/user.svg';
+import userIco from 'assets/icons/user.svg';
 import { Link } from 'react-router-dom';
 import { Context } from 'context';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { profileActionCreator } from 'state/actions';
 
 const Navbar = (): JSX.Element => {
-    const { setIsAuth } = useContext(Context);
+    const { user } = useAppSelector((state) => ({ user: state.profile.user }));
+    const dispatch = useAppDispatch();
+
     const logout = (): void => {
-        setIsAuth!(false);
-        localStorage.removeItem('auth');
+        dispatch(profileActionCreator.signOut());
     };
 
     return (
@@ -24,9 +27,9 @@ const Navbar = (): JSX.Element => {
                 <li className='nav-header__item' title='Profile'>
                     <div className='nav-header__inner profile-nav' tabIndex={0}>
                         <span className='visually-hidden'>Profile</span>
-                        <img src={user} alt='profile icon' />
+                        <img src={userIco} alt='profile icon' />
                         <ul className='profile-nav__list'>
-                            <li className='profile-nav__item'>John Doe</li>
+                            <li className='profile-nav__item'>{user ? user.fullName : 'User'}</li>
                             <li className='profile-nav__item'>
                                 <Button classes='profile-nav__sign-out' onClick={logout}>
                                     Sign Out

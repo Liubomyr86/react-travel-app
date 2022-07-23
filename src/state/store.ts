@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { auth, http, storage } from 'services/services';
-import { profileReducer } from './root-reduser';
+import { auth, http, storage, trips } from 'services/services';
+import { profileReducer, tripsReducer } from './root-reducer';
 
 const store = configureStore({
-    reducer: { profile: profileReducer },
+    reducer: { profile: profileReducer, trips: tripsReducer },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             thunk: {
@@ -12,6 +12,7 @@ const store = configureStore({
                         http,
                         storage,
                         auth,
+                        trips,
                     },
                 },
             },

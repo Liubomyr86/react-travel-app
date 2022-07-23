@@ -1,30 +1,41 @@
-import React, { useContext, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Button from 'components/common/button/button';
 import TripCardDescription from 'components/common/trip-card-description/tripCardDescription';
 import TripCardInfo from 'components/common/trip-card-info/tripCardInfo';
 import TripCardPrice from 'components/common/trip-card-price/tripCardPrice';
-import { Context } from 'context';
 import { useParams } from 'react-router-dom';
 import Modal from 'components/common/modal/modal';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { tripsActionCreator } from 'state/actions';
+import { ITripCardProps } from 'models/tripCard.model';
+import Loader from 'components/common/loader/loader';
 
 const TripPage = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+
+    const { trip } = useAppSelector((state) => ({ trip: state.trips.trip as ITripCardProps }));
     const { tripId } = useParams();
-    const { data } = useContext(Context);
-    const trip = data?.find((item) => item.id === tripId);
-    const [tripData, setTripData] = useState(trip);
+    const hasTrip = Boolean(trip);
+
+    useEffect(() => {
+        dispatch(tripsActionCreator.loadTrip(tripId!));
+    }, [hasTrip, tripId]);
+
     const [modal, setModal] = useState(true);
 
-    const { image, title, duration, level, price, description } = tripData!;
+    if (!hasTrip || tripId !== trip.id) {
+        return <Loader />;
+    }
 
     return (
         <main className='trip-page'>
             <h1 className='visually-hidden'>Travel App</h1>
             <div className='trip'>
-                <img src={image} className='trip__img' alt='trip image' />
+                <img src={trip.image} className='trip__img' alt='trip image' />
                 <div className='trip__content'>
-                    <TripCardInfo title={title} duration={duration} level={level} />
-                    <TripCardDescription classes='trip__description' description={description} />
-                    <TripCardPrice price={price} />
+                    <TripCardInfo title={trip.title} duration={trip.duration} level={trip.level} />
+                    <TripCardDescription classes='trip__description' description={trip.description} />
+                    <TripCardPrice price={trip.price} />
                     <Button classes='trip__button' onClick={() => setModal(false)}>
                         Book a trip
                     </Button>
@@ -33,10 +44,10 @@ const TripPage = (): JSX.Element => {
             <Modal
                 visible={modal}
                 setModal={setModal}
-                title={title!}
-                duration={duration!}
-                level={level!}
-                price={price!}
+                title={trip.title!}
+                duration={trip.duration!}
+                level={trip.level!}
+                price={trip.price!}
             />
         </main>
     );

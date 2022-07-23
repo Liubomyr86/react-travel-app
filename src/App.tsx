@@ -19,7 +19,6 @@ const App = (): JSX.Element => {
     useEffect(() => {
         if (hasToken) {
             dispatch(profileActionCreator.loadCurrentUser());
-            console.log(hasToken);
         }
     }, [hasToken, dispatch]);
 

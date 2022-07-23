@@ -213,6 +213,11 @@ select {
 
 /* loader */
 
+.loader-container {
+    align-items: center;
+    justify-content: center;
+}
+
 .loader {
     width: 60px;
     height: 60px;
