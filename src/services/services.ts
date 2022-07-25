@@ -3,6 +3,7 @@ import { Http } from 'services/http/http.service';
 import { Auth } from 'services/auth/auth.service';
 import { ENV } from 'common/constants/constants';
 import { Trips } from './trips/trips.service';
+import { Bookings } from './bookings/bookings.services';
 
 const storage = new Storage({
     storage: localStorage,
@@ -22,4 +23,9 @@ const trips = new Trips({
     http,
 });
 
-export { http, storage, auth, trips };
+const bookings = new Bookings({
+    apiPath: ENV.BASE_URL!,
+    http,
+});
+
+export { http, storage, auth, trips, bookings };

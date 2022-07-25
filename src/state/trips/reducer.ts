@@ -1,6 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { IResponse } from 'models/api.model';
-import { deleteTrip, loadTrip, loadTrips } from './actions';
+import { loadTrip, loadTrips } from './actions';
 
 const initialState: { [key: string]: IResponse[] | null | [] | IResponse } = {
     trips: [],
@@ -14,9 +14,6 @@ const reduser = createReducer(initialState, (builder) => {
 
     builder.addCase(loadTrip.fulfilled, (state, action) => {
         state.trip = action.payload as IResponse;
-    });
-    builder.addCase(deleteTrip.fulfilled, (state, action) => {
-        state.trip = action.payload;
     });
 });
 

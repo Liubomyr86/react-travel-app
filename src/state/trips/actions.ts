@@ -21,11 +21,4 @@ const loadTrip = createAsyncThunk<IResponse, string, { extra: { services: IServi
     },
 );
 
-const deleteTrip = createAsyncThunk<null, void, { extra: { services: IServices } }>(
-    ActionType.DELETE_TRIP,
-    async (_request, { extra: { services } }) => {
-        return null;
-    },
-);
-
-export { loadTrips, loadTrip, deleteTrip };
+export { loadTrips, loadTrip };

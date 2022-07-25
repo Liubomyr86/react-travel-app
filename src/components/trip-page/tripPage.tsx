@@ -41,14 +41,7 @@ const TripPage = (): JSX.Element => {
                     </Button>
                 </div>
             </div>
-            <Modal
-                visible={modal}
-                setModal={setModal}
-                title={trip.title!}
-                duration={trip.duration!}
-                level={trip.level!}
-                price={trip.price!}
-            />
+            <Modal visible={modal} setModal={setModal} />
         </main>
     );
 };

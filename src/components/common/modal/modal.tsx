@@ -3,17 +3,41 @@ import Button from 'components/common/button/button';
 import Input from 'components/common/input/input';
 import Label from 'components/common/label/label';
 import TripCardInfo from 'components/common/trip-card-info/tripCardInfo';
-import { getCurrentDate } from 'helpers/index';
+import { getTomorrowDate } from 'helpers/index';
 import { IModalProps } from 'models/modal.model';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { IResponse } from 'models/api.model';
+import { bookingsActionCreator } from 'state/actions';
 
-const Modal: React.FC<IModalProps> = ({ visible, setModal, title, duration, level, price }): JSX.Element => {
+const Modal: React.FC<IModalProps> = ({ visible, setModal }): JSX.Element => {
+    const { title, duration, level, price, userId, tripId } = useAppSelector((state) => ({
+        title: (state.trips.trip as IResponse).title as string,
+        duration: (state.trips.trip as IResponse).duration as number,
+        level: (state.trips.trip as IResponse).level as string,
+        price: (state.trips.trip as IResponse).price as number,
+        tripId: (state.trips.trip as IResponse).id as string,
+        userId: (state.profile.user as IResponse).id,
+    }));
+
+    const dispatch = useAppDispatch();
+
     const [totalPrice, setTotalPrice] = useState(price);
     const [inputValue, setInputValue] = useState('1');
     const classes = ['trip-popup__input input', 'input__heading'];
-    const currentDate = getCurrentDate();
+    const currentDate = getTomorrowDate();
 
     const closeModal = (event: FormEvent): void => {
         event.preventDefault();
+        console.dir(event.target);
+
+        const payload = {
+            tripId: tripId,
+            userId: String(userId),
+            guests: Number(inputValue),
+            date: ((event.target as HTMLFormElement)[0] as HTMLInputElement).valueAsDate!.toISOString(),
+        };
+
+        dispatch(bookingsActionCreator.addBooking(payload));
         setModal(true);
     };
 
