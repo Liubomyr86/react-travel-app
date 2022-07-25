@@ -4,11 +4,13 @@ import { sortBookingsData } from 'helpers';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { bookingsActionCreator } from 'state/actions';
 import { IBookingsData } from 'models/booking.model';
+import Loader from 'components/common/loader/loader';
 
 const Bookings = (): JSX.Element => {
     const dispatch = useAppDispatch();
-    const { bookings } = useAppSelector((state) => ({
+    const { bookings, status } = useAppSelector((state) => ({
         bookings: state.bookings.bookings as unknown as IBookingsData[],
+        status: state.bookings.status,
     }));
     const hasBookings = Boolean(bookings.length);
     const [sortedBookingsData, setSortedBookingsData] = useState(bookings);
@@ -22,12 +24,15 @@ const Bookings = (): JSX.Element => {
     }, [loadBookings, hasBookings]);
 
     const deleteBooking = (id: string): void => {
+        dispatch(bookingsActionCreator.removeBooking(id));
+
         const sortedData = [...sortedBookingsData].filter((booking) => booking.id !== id);
         setSortedBookingsData(sortedData);
-        dispatch(bookingsActionCreator.removeBooking(id));
     };
 
-    return (
+    return status === 'loading' ? (
+        <Loader />
+    ) : (
         <main className='bookings-page'>
             <h1 className='visually-hidden'>Travel App</h1>
             <ul className='bookings__list'>

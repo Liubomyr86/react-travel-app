@@ -3,12 +3,12 @@ import Button from 'components/common/button/button';
 import briefcase from 'assets/icons/briefcase.svg';
 import userIco from 'assets/icons/user.svg';
 import { Link } from 'react-router-dom';
-import { Context } from 'context';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { profileActionCreator } from 'state/actions';
+import { IQuery } from 'models/api.model';
 
 const Navbar = (): JSX.Element => {
-    const { user } = useAppSelector((state) => ({ user: state.profile.user }));
+    const { user } = useAppSelector((state) => ({ user: state.profile.user as IQuery }));
     const dispatch = useAppDispatch();
 
     const logout = (): void => {

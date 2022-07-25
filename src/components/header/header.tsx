@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from 'context';
 import Navbar from 'components/common/navbar/navbar';
 import { useAppSelector } from 'hooks/hooks';
 

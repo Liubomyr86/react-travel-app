@@ -6,15 +6,12 @@ import { storage } from 'services/services';
 import { StorageKey } from 'common/enums/app/storage-key';
 import { useAppDispatch, useAppSelector } from 'hooks/hooks';
 import { profileActionCreator } from 'state/actions';
+import ReduxToastr from 'react-redux-toastr';
 
 const App = (): JSX.Element => {
-    const { user } = useAppSelector((state) => ({
-        user: state.profile.user,
-    }));
     const dispatch = useAppDispatch();
 
     const hasToken = Boolean(storage.getItem(StorageKey.TOKEN));
-    const hasUser = Boolean(user);
 
     useEffect(() => {
         if (hasToken) {
@@ -25,8 +22,18 @@ const App = (): JSX.Element => {
     return (
         <>
             <Header />
-            <Router hasUser={hasUser} hasToken={hasToken} />
+            <Router />
             <Footer />
+            <ReduxToastr
+                timeOut={4000}
+                newestOnTop={true}
+                preventDuplicates
+                position='top-right'
+                transitionIn='fadeIn'
+                transitionOut='fadeOut'
+                progressBar
+                closeOnToastrClick
+            />
         </>
     );
 };

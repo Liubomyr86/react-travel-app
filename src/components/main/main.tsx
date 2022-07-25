@@ -11,7 +11,10 @@ import Loader from 'components/common/loader/loader';
 
 const Main = (): JSX.Element => {
     const dispatch = useAppDispatch();
-    const { trips } = useAppSelector((state) => ({ trips: state.trips.trips as ITripCardProps[] }));
+    const { trips, status } = useAppSelector((state) => ({
+        trips: state.trips.trips as ITripCardProps[],
+        status: state.trips.status,
+    }));
     const hasTrips = Boolean(trips.length);
 
     const [initialData, setInitialData] = useState(trips);
@@ -72,7 +75,9 @@ const Main = (): JSX.Element => {
         { value: 'difficult', name: 'difficult' },
     ];
 
-    return (
+    return status === 'loading' ? (
+        <Loader />
+    ) : (
         <main>
             <h1 className='visually-hidden'>Travel App</h1>
             <section className='trips-filter'>

@@ -17,5 +17,5 @@ export const publicRoutes: { path: string; element: JSX.Element }[] = [
     { path: '/', element: <SignIn /> },
     { path: 'sign-in', element: <SignIn /> },
     { path: 'sign-up', element: <SignUp /> },
-    { path: '*', element: <Navigate to='sign-in' replace /> },
+    { path: '*', element: <Navigate to='/' replace /> },
 ];
