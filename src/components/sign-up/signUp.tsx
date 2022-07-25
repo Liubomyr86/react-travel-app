@@ -1,16 +1,28 @@
-import React, { FormEvent } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'components/common/button/button';
 import Input from 'components/common/input/input';
 import Label from 'components/common/label/label';
 import { useAppDispatch } from 'hooks/hooks';
 import { profileActionCreator } from 'state/actions';
+import { isEmailValid } from 'helpers';
 
 const SignUp = (): JSX.Element => {
     const dispatch = useAppDispatch();
+    const [emailInputValue, setEmailInputValue] = useState('');
+    const [emailError, setEmailError] = useState(false);
+    const handleEmailChange = (event: ChangeEvent<HTMLInputElement>): void => {
+        const value = event.target.value;
+        setEmailError(false);
+        setEmailInputValue(value);
+    };
 
     const login = (event: FormEvent): void => {
         event.preventDefault();
+        if (!isEmailValid(emailInputValue)) {
+            setEmailError(true);
+            return;
+        }
         const payload = {
             fullName: ((event.target as HTMLFormElement)[0] as HTMLInputElement).value,
             email: ((event.target as HTMLFormElement)[1] as HTMLInputElement).value,
@@ -30,7 +42,14 @@ const SignUp = (): JSX.Element => {
                     <Input name='full-name' type='text' required={true} />
                 </Label>
                 <Label inputHeadingName='Email' classes={classes}>
-                    <Input name='email' type='email' required={true} />
+                    <Input
+                        name='email'
+                        type='email'
+                        required={true}
+                        onChange={handleEmailChange}
+                        value={emailInputValue}
+                    />
+                    {emailError && <span style={{ color: 'red' }}>Email format is not valid</span>}
                 </Label>
                 <Label inputHeadingName='Password' classes={classes}>
                     <Input name='password' type='password' required={true} minLength={3} maxLength={20} />
