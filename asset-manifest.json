@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/react-travel-app/static/css/main.208d7b2d.css",
+    "main.js": "/react-travel-app/static/js/main.826b9bf3.js",
+    "index.html": "/react-travel-app/index.html",
+    "static/media/heart.svg": "/react-travel-app/static/media/heart.ffc1a9280eeea6974883ba43e3a593ce.svg",
+    "static/media/calendar.svg": "/react-travel-app/static/media/calendar.60ed07522589baceca88.svg",
+    "static/media/briefcase.svg": "/react-travel-app/static/media/briefcase.9eb8d8f977cf8256bdf239f6cfcd2ca5.svg",
+    "static/media/search.svg": "/react-travel-app/static/media/search.a83e56eef81aafb8814e.svg",
+    "static/media/user.svg": "/react-travel-app/static/media/user.b9126f8c30863c71265ee326a4d778ef.svg",
+    "static/media/arrow-down.svg": "/react-travel-app/static/media/arrow-down.9785f9daf7b690664fea.svg",
+    "main.208d7b2d.css.map": "/react-travel-app/static/css/main.208d7b2d.css.map",
+    "main.826b9bf3.js.map": "/react-travel-app/static/js/main.826b9bf3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.208d7b2d.css",
+    "static/js/main.826b9bf3.js"
+  ]
+}
