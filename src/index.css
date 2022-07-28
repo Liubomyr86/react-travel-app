@@ -1,4 +1,5 @@
 @import-normalize;
+@import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 
 /* Table of contents
 
@@ -27,9 +28,7 @@
 - animations
 
 */
-
 /* variables */
-
 :root {
     --color-white: #ffffff;
     --color-blue-100: #eef8fb;
@@ -178,7 +177,7 @@ select {
 
 /* button */
 
-/* .button {
+.button {
     display: block;
     width: 100%;
     min-height: 45px;
@@ -196,7 +195,7 @@ select {
 
 .button:hover {
     background-color: var(--color-blue-300);
-} */
+}
 
 /* modal */
 
@@ -213,6 +212,11 @@ select {
 
 /* loader */
 
+.loader-container {
+    align-items: center;
+    justify-content: center;
+}
+
 .loader {
     width: 60px;
     height: 60px;
@@ -224,7 +228,7 @@ select {
 
 /* trip-info */
 
-/* .trip-info {
+.trip-info {
     width: 100%;
     max-width: 300px;
     padding-bottom: 10px;
@@ -256,22 +260,22 @@ select {
     content: '•';
     margin-right: 10px;
     color: var(--color-blue-200);
-} */
+}
 
 /* trip-price */
 
-/* .trip-price__value {
+.trip-price__value {
     display: block;
     color: var(--color-blue-200);
     font-size: var(--font-size-600);
     line-height: 1;
-} */
+}
 
 /* layout */
 
 /* header */
 
-/* .header {
+.header {
     position: relative;
     padding: 10px 20px;
     border-bottom: 1px solid var(--color-gray);
@@ -292,9 +296,9 @@ select {
     font-size: var(--font-size-500);
     font-family: 'Playfair Display', serif;
     text-decoration: none;
-} */
+}
 
-/* .header__nav {
+.header__nav {
     position: absolute;
     right: 0;
     height: 100%;
@@ -318,11 +322,15 @@ select {
     align-items: center;
     min-width: 80px;
     height: 100%;
-} */
+}
+
+.nav-header__inner img {
+    height: auto;
+}
 
 /* profile-nav */
 
-/* .profile-nav {
+.profile-nav {
     position: relative;
     cursor: pointer;
 }
@@ -358,11 +366,11 @@ select {
 
 .profile-nav__sign-out {
     min-height: auto;
-} */
+}
 
 /* footer */
 
-/* .footer {
+.footer {
     padding: 30px 20px;
     color: var(--color-white);
     text-align: center;
@@ -377,6 +385,7 @@ select {
 
 .footer__icon {
     width: 16px;
+    height: auto;
 }
 
 .footer__link {
@@ -387,13 +396,13 @@ select {
 
 .footer__link:hover {
     color: var(--color-blue-300);
-} */
+}
 
 /* pages */
 
 /* sign in/sign up pages */
 
-/* .sign-up-page,
+.sign-up-page,
 .sign-in-page {
     justify-content: center;
     align-items: center;
@@ -421,18 +430,19 @@ select {
 .sign-in-form__link {
     color: var(--color-blue-200);
     transition: 0.1s color ease;
+    margin-left: 5px;
 }
 
 .sign-up-form__link:hover,
 .sign-in-form__link:hover {
     color: var(--color-blue-300);
-} */
+}
 
 /* main-page */
 
 /* trips-filter */
 
-/* .trips-filter {
+.trips-filter {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -447,7 +457,7 @@ select {
     gap: 20px 25px;
     width: 100%;
     max-width: var(--container-width);
-} */
+}
 
 .trips-filter__search {
     width: 100%;
@@ -465,7 +475,7 @@ select {
 
 /* trips */
 
-/* .trips {
+.trips {
     padding: 60px 20px;
 }
 
@@ -478,9 +488,9 @@ select {
     margin: 0 auto;
     padding: 0;
     list-style: none;
-} */
+}
 
-/* .trip-card {
+.trip-card {
     display: flex;
     flex-direction: column;
     max-width: 320px;
@@ -494,11 +504,11 @@ select {
     flex-direction: column;
     gap: 15px;
     padding: 20px 30px;
-} */
+}
 
 /* trip-page */
 
-/* .trip-page {
+.trip-page {
     padding: 60px 20px;
 }
 
@@ -532,11 +542,11 @@ select {
 
 .trip__button {
     max-width: 200px;
-} */
+}
 
 /* trip-popup */
 
-/* .trip-popup {
+.trip-popup {
     position: relative;
     flex: 1;
     max-width: 380px;
@@ -579,7 +589,7 @@ select {
 .trip-popup__total-value {
     font-weight: 600;
     font-size: var(--font-size-400);
-} */
+}
 
 /* bookings-page */
 

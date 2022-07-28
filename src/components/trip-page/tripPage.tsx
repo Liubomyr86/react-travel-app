@@ -1,44 +1,47 @@
-import React, { useContext, useState } from 'react';
-import Button from '../common/button/button';
-import TripCardDescription from '../common/trip-card-description/tripCardDescription';
-import styles from './tripPage.module.css';
-import TripCardInfo from '../common/trip-card-info/tripCardInfo';
-import TripCardPrice from '../common/trip-card-price/tripCardPrice';
-import { Context } from '../../context';
+import React, { useCallback, useEffect, useState } from 'react';
+import Button from 'components/common/button/button';
+import TripCardDescription from 'components/common/trip-card-description/tripCardDescription';
+import TripCardInfo from 'components/common/trip-card-info/tripCardInfo';
+import TripCardPrice from 'components/common/trip-card-price/tripCardPrice';
 import { useParams } from 'react-router-dom';
-import Modal from '../common/modal/modal';
+import Modal from 'components/common/modal/modal';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { tripsActionCreator } from 'state/actions';
+import { ITripCardProps } from 'models/tripCard.model';
+import Loader from 'components/common/loader/loader';
 
 const TripPage = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+
+    const { trip } = useAppSelector((state) => ({ trip: state.trips.trip as ITripCardProps }));
     const { tripId } = useParams();
-    const { data } = useContext(Context);
-    const trip = data?.find((item) => item.id === tripId);
-    const [tripData, setTripData] = useState(trip);
+    const hasTrip = Boolean(trip);
+
+    useEffect(() => {
+        dispatch(tripsActionCreator.loadTrip(tripId!));
+    }, [hasTrip, tripId]);
+
     const [modal, setModal] = useState(true);
 
-    const { image, title, duration, level, price, description } = tripData!;
+    if (!hasTrip || tripId !== trip.id) {
+        return <Loader />;
+    }
 
     return (
-        <main className={styles.tripPage}>
+        <main className='trip-page'>
             <h1 className='visually-hidden'>Travel App</h1>
-            <div className={styles.trip}>
-                <img src={image} className={styles.tripImg} alt='trip image' />
-                <div className={styles.tripContent}>
-                    <TripCardInfo title={title} duration={duration} level={level} />
-                    <TripCardDescription classes={styles.tripDescription} description={description} />
-                    <TripCardPrice price={price} />
-                    <Button classes={styles.tripButton} onClick={() => setModal(false)}>
+            <div className='trip'>
+                <img src={trip.image} className='trip__img' alt='trip image' />
+                <div className='trip__content'>
+                    <TripCardInfo title={trip.title} duration={trip.duration} level={trip.level} />
+                    <TripCardDescription classes='trip__description' description={trip.description} />
+                    <TripCardPrice price={trip.price} />
+                    <Button classes='trip__button' onClick={() => setModal(false)}>
                         Book a trip
                     </Button>
                 </div>
             </div>
-            <Modal
-                visible={modal}
-                setModal={setModal}
-                title={title!}
-                duration={duration!}
-                level={level!}
-                price={price!}
-            />
+            <Modal visible={modal} setModal={setModal} />
         </main>
     );
 };

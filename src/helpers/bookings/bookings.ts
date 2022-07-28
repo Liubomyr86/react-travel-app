@@ -1,1 +1,1 @@
-export { sortBookingsData } from './sortBookingsData/sortBookingsData';
+export { sortBookingsData } from 'helpers/bookings/sortBookingsData/sortBookingsData';

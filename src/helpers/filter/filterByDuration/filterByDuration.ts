@@ -1,4 +1,4 @@
-import { ITripCardProps } from '../../../models/tripCard.model';
+import { ITripCardProps } from 'models/tripCard.model';
 
 export const filterByDuration = (filteredData: ITripCardProps[], value: string): ITripCardProps[] => {
     if (!value) {

@@ -1,19 +1,22 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Context } from '../../context';
-import Navbar from '../common/navbar/navbar';
-import styles from './header.module.css';
+import Navbar from 'components/common/navbar/navbar';
+import { useAppSelector } from 'hooks/hooks';
 
 const Header = (): JSX.Element => {
-    const { isAuth } = useContext(Context);
+    const { user } = useAppSelector((state) => ({
+        user: state.profile.user,
+    }));
+
+    const hasUser = Boolean(user);
 
     return (
-        <header className={styles.header}>
-            <div className={styles.headerInner}>
-                <Link to='/' className={styles.headerLogo}>
+        <header className='header'>
+            <div className='header__inner'>
+                <Link to='/' className='header__logo'>
                     Travel App
                 </Link>
-                {isAuth && <Navbar />}
+                {hasUser && <Navbar />}
             </div>
         </header>
     );

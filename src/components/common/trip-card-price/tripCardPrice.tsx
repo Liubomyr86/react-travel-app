@@ -1,12 +1,11 @@
 import React from 'react';
-import { ITripCardProps } from '../../../models/tripCard.model';
-import styles from './tripCardPrice.module.css';
+import { ITripCardProps } from 'models/tripCard.model';
 
 const TripCardPrice: React.FC<ITripCardProps> = ({ price }) => {
     return (
-        <div className={styles.tripPrice}>
+        <div className='trip-price'>
             <span>Price</span>
-            <strong className={styles.tripPriceValue}>{`${price} $`}</strong>
+            <strong className='trip-price__value '>{`${price} $`}</strong>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React from 'react';
-import { formatDate } from '../../../helpers/index';
-import { IBookingProps } from '../../../models/booking.model';
-import Button from '../button/button';
+import { formatDate } from 'helpers/index';
+import { IBookingProps } from 'models/booking.model';
+import Button from 'components/common/button/button';
 
 const Booking: React.FC<IBookingProps> = ({ title, guests, date, price, handleClick }): JSX.Element => {
     const formattedDate = formatDate(date);

@@ -1,20 +1,18 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { Context } from '../context';
-import { privateRoutes, publicRoutes } from '../router';
-import Loader from './common/loader/loader';
+import { privateRoutes, publicRoutes } from 'router';
+import Loader from 'components/common/loader/loader';
+import { useAppSelector } from 'hooks/hooks';
 
 const Router = (): JSX.Element => {
-    const { isAuth, isLoading } = useContext(Context);
+    const { user, status } = useAppSelector((state) => ({ status: state.profile.status, user: state.profile.user }));
+    const hasUser = Boolean(user);
 
-    if (isLoading) {
-        return <Loader />;
-    }
-    // const isAuth = false;
-
-    return (
+    return status === 'loading' ? (
+        <Loader />
+    ) : (
         <Routes>
-            {isAuth
+            {hasUser
                 ? privateRoutes.map((route) => <Route path={route.path} element={route.element} key={route.path} />)
                 : publicRoutes.map((route) => <Route path={route.path} element={route.element} key={route.path} />)}
         </Routes>

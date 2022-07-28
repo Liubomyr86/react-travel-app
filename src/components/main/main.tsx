@@ -1,19 +1,39 @@
-import React, { ChangeEvent, ChangeEventHandler, useContext, useState } from 'react';
-import { Context } from '../../context';
-import { filterByDuration, filterByLevel, filterBySearchValue } from '../../helpers';
-import Input from '../common/input/input';
-import Label from '../common/label/label';
-import Select from '../common/select/select';
-import TripCard from '../common/trip-card/tripCard';
-import styles from './main.module.css';
+import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import { filterByDuration, filterByLevel, filterBySearchValue } from 'helpers';
+import Input from 'components/common/input/input';
+import Label from 'components/common/label/label';
+import Select from 'components/common/select/select';
+import TripCard from 'components/common/trip-card/tripCard';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { ITripCardProps } from 'models/tripCard.model';
+import { tripsActionCreator } from 'state/actions';
+import Loader from 'components/common/loader/loader';
 
 const Main = (): JSX.Element => {
-    const { data } = useContext(Context);
-    const [initialData, setInitialData] = useState(data);
-    const [tripsData, setTripsData] = useState(data);
+    const dispatch = useAppDispatch();
+    const { trips, status } = useAppSelector((state) => ({
+        trips: state.trips.trips as ITripCardProps[],
+        status: state.trips.status,
+    }));
+    const hasTrips = Boolean(trips.length);
+
+    const [initialData, setInitialData] = useState(trips);
+    const [tripsData, setTripsData] = useState(trips);
     const [searchValue, setSearchValue] = useState('');
     const [durationValue, setDurationValue] = useState('');
     const [levelValue, setLevelValue] = useState('');
+
+    const loadTrips = useCallback(() => {
+        dispatch(tripsActionCreator.loadTrips());
+    }, [dispatch]);
+
+    useEffect(() => {
+        loadTrips();
+        if (hasTrips) {
+            setInitialData(trips);
+            setTripsData(trips);
+        }
+    }, [loadTrips, hasTrips]);
 
     const handleSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
         const value = event.target.value;
@@ -55,12 +75,14 @@ const Main = (): JSX.Element => {
         { value: 'difficult', name: 'difficult' },
     ];
 
-    return (
+    return status === 'loading' ? (
+        <Loader />
+    ) : (
         <main>
             <h1 className='visually-hidden'>Travel App</h1>
-            <section className={styles.tripsFilter}>
+            <section className='trips-filter'>
                 <h2 className='visually-hidden'>Trips filter</h2>
-                <form className={styles.tripsFilterForm} autoComplete='off'>
+                <form className='trips-filter__form' autoComplete='off'>
                     <Label inputHeadingName='Search by name' classes={inputClasses}>
                         <Input
                             name='search'
@@ -90,10 +112,10 @@ const Main = (): JSX.Element => {
                     </Label>
                 </form>
             </section>
-            <section className={styles.trips}>
+            <section className='trips'>
                 <h2 className='visually-hidden'>Trips List</h2>
-                <ul className={styles.tripList}>
-                    {tripsData!.map((tripCard) => (
+                <ul className='trip-list'>
+                    {tripsData.map((tripCard) => (
                         <TripCard
                             key={tripCard.id}
                             image={tripCard.image}

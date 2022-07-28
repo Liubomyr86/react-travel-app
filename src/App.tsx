@@ -1,39 +1,39 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import Footer from './components/footer/footer';
-import Header from './components/header/header';
-import Router from './components/router';
-import { Context } from './context';
-import tripsData from './mocks/trips.json';
+import React, { useEffect } from 'react';
+import Footer from 'components/footer/footer';
+import Header from 'components/header/header';
+import Router from 'components/router';
+import { storage } from 'services/services';
+import { StorageKey } from 'common/enums/app/storage-key';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { profileActionCreator } from 'state/actions';
+import ReduxToastr from 'react-redux-toastr';
 
 const App = (): JSX.Element => {
-    const [data, setData] = useState(tripsData);
-    const [isAuth, setIsAuth] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const dispatch = useAppDispatch();
 
-    const contextValue = useMemo(
-        () => ({
-            isAuth,
-            setIsAuth,
-            isLoading,
-            data,
-        }),
-        [isAuth, isLoading],
-    );
+    const hasToken = Boolean(storage.getItem(StorageKey.TOKEN));
 
     useEffect(() => {
-        if (localStorage.getItem('auth')) {
-            setIsAuth(true);
+        if (hasToken) {
+            dispatch(profileActionCreator.loadCurrentUser());
         }
-        setIsLoading(false);
-    }, []);
+    }, [hasToken, dispatch]);
 
     return (
         <>
-            <Context.Provider value={contextValue}>
-                <Header />
-                <Router />
-                <Footer />
-            </Context.Provider>
+            <Header />
+            <Router />
+            <Footer />
+            <ReduxToastr
+                timeOut={4000}
+                newestOnTop={true}
+                preventDuplicates
+                position='top-right'
+                transitionIn='fadeIn'
+                transitionOut='fadeOut'
+                progressBar
+                closeOnToastrClick
+            />
         </>
     );
 };
