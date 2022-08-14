@@ -1,4 +1,5 @@
 import { createReducer, isAnyOf } from '@reduxjs/toolkit';
+import { StateStatus } from 'common/enums/enums';
 import { IQuery } from 'models/api.model';
 import { loadCurrentUser, signIn, signOut, signUp } from './actions';
 
@@ -11,21 +12,21 @@ const initialState: { [key: string]: IQuery | null | string } = {
 const reduser = createReducer(initialState, (builder) => {
     builder.addCase(signOut.fulfilled, (state) => {
         state.user = null;
-        state.status = 'resolved';
+        state.status = StateStatus.RESOLVED;
     });
     builder.addMatcher(isAnyOf(signIn.pending, signUp.pending, signOut.pending, loadCurrentUser.pending), (state) => {
-        state.status = 'loading';
+        state.status = StateStatus.LOADING;
         state.error = null;
     });
     builder.addMatcher(isAnyOf(signIn.fulfilled, signUp.fulfilled, loadCurrentUser.fulfilled), (state, action) => {
         state.user = action.payload as IQuery;
-        state.status = 'resolved';
+        state.status = StateStatus.RESOLVED;
     });
     builder.addMatcher(
         isAnyOf(signIn.rejected, signUp.rejected, signOut.rejected, loadCurrentUser.rejected),
         (state, action) => {
             state.user = null;
-            state.status = 'rejected';
+            state.status = StateStatus.REJECTED;
             state.error = action.payload as string;
         },
     );
