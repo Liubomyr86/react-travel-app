@@ -36,7 +36,7 @@ const Main = (): JSX.Element => {
     const handleSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
         const value = event.target.value;
         setSearchValue(value);
-        let filteredData = filterBySearchValue([...trips!], value);
+        let filteredData = filterBySearchValue([...trips], value);
         filteredData = filterByLevel(filteredData, levelValue);
         filteredData = filterByDuration(filteredData, durationValue);
         setTripsData(filteredData);
@@ -45,7 +45,7 @@ const Main = (): JSX.Element => {
     const handleDurationChange = (event: ChangeEvent<HTMLSelectElement>): void => {
         const value = event.target.value;
         setDurationValue(value);
-        let filteredData = filterByDuration([...trips!], value);
+        let filteredData = filterByDuration([...trips], value);
         filteredData = filterByLevel(filteredData, levelValue);
         filteredData = filterBySearchValue(filteredData, searchValue);
         setTripsData(filteredData);
@@ -54,7 +54,7 @@ const Main = (): JSX.Element => {
     const handleLevelChange = (event: ChangeEvent<HTMLSelectElement>): void => {
         const value = event.target.value;
         setLevelValue(value);
-        let filteredData = filterByLevel([...trips!], value);
+        let filteredData = filterByLevel([...trips], value);
         filteredData = filterByDuration(filteredData, durationValue);
         filteredData = filterBySearchValue(filteredData, searchValue);
         setTripsData(filteredData);
