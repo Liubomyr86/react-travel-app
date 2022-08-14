@@ -1,5 +1,5 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
-import { filterByDuration, filterByLevel, filterBySearchValue } from 'helpers';
+import { filterByDuration, filterByLevel, filterBySearchValue, filterOptions } from 'helpers';
 import Input from 'components/common/input/input';
 import Label from 'components/common/label/label';
 import Select from 'components/common/select/select';
@@ -17,7 +17,6 @@ const Main = (): JSX.Element => {
     }));
     const hasTrips = Boolean(trips.length);
 
-    const [initialData, setInitialData] = useState(trips);
     const [tripsData, setTripsData] = useState(trips);
     const [searchValue, setSearchValue] = useState('');
     const [durationValue, setDurationValue] = useState('');
@@ -30,7 +29,6 @@ const Main = (): JSX.Element => {
     useEffect(() => {
         loadTrips();
         if (hasTrips) {
-            setInitialData(trips);
             setTripsData(trips);
         }
     }, [loadTrips, hasTrips]);
@@ -38,7 +36,7 @@ const Main = (): JSX.Element => {
     const handleSearchChange = (event: ChangeEvent<HTMLInputElement>): void => {
         const value = event.target.value;
         setSearchValue(value);
-        let filteredData = filterBySearchValue([...initialData!], value);
+        let filteredData = filterBySearchValue([...trips!], value);
         filteredData = filterByLevel(filteredData, levelValue);
         filteredData = filterByDuration(filteredData, durationValue);
         setTripsData(filteredData);
@@ -47,7 +45,7 @@ const Main = (): JSX.Element => {
     const handleDurationChange = (event: ChangeEvent<HTMLSelectElement>): void => {
         const value = event.target.value;
         setDurationValue(value);
-        let filteredData = filterByDuration([...initialData!], value);
+        let filteredData = filterByDuration([...trips!], value);
         filteredData = filterByLevel(filteredData, levelValue);
         filteredData = filterBySearchValue(filteredData, searchValue);
         setTripsData(filteredData);
@@ -56,7 +54,7 @@ const Main = (): JSX.Element => {
     const handleLevelChange = (event: ChangeEvent<HTMLSelectElement>): void => {
         const value = event.target.value;
         setLevelValue(value);
-        let filteredData = filterByLevel([...initialData!], value);
+        let filteredData = filterByLevel([...trips!], value);
         filteredData = filterByDuration(filteredData, durationValue);
         filteredData = filterBySearchValue(filteredData, searchValue);
         setTripsData(filteredData);
@@ -64,16 +62,6 @@ const Main = (): JSX.Element => {
 
     const inputClasses = ['trips-filter__search input', 'visually-hidden'];
     const selectClasses = ['select', 'visually-hidden'];
-    const durationOptions = [
-        { value: '0_x_5', name: '&lt; 5 days' },
-        { value: '5_x_10', name: '&lt; 10 days' },
-        { value: '10_x', name: '&ge; 10 days' },
-    ];
-    const levelOptions = [
-        { value: 'easy', name: 'easy' },
-        { value: 'moderate', name: 'moderate' },
-        { value: 'difficult', name: 'difficult' },
-    ];
 
     return status === 'loading' ? (
         <Loader />
@@ -94,7 +82,7 @@ const Main = (): JSX.Element => {
                     </Label>
                     <Label inputHeadingName='Search by duration' classes={selectClasses}>
                         <Select
-                            options={durationOptions}
+                            options={filterOptions.durationOptions}
                             defaultValue='duration'
                             name='duration'
                             value={durationValue}
@@ -103,7 +91,7 @@ const Main = (): JSX.Element => {
                     </Label>
                     <Label inputHeadingName='Search by level' classes={selectClasses}>
                         <Select
-                            options={levelOptions}
+                            options={filterOptions.levelOptions}
                             defaultValue='level'
                             name='level'
                             value={levelValue}
