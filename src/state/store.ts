@@ -3,7 +3,12 @@ import { auth, bookings, http, storage, trips } from 'services/services';
 import { bookingsReducer, profileReducer, toastrReducer, tripsReducer } from './root-reducer';
 
 const store = configureStore({
-    reducer: { profile: profileReducer, trips: tripsReducer, bookings: bookingsReducer, toastr: toastrReducer },
+    reducer: {
+        profile: profileReducer,
+        trips: tripsReducer,
+        bookings: bookingsReducer,
+        toastr: toastrReducer,
+    },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             thunk: {

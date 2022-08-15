@@ -28,17 +28,20 @@ const Modal: React.FC<IModalProps> = ({ visible, setModal }): JSX.Element => {
 
     const closeModal = (event: FormEvent): void => {
         event.preventDefault();
-        console.dir(event.target);
+        setModal(true);
+    };
+
+    const bookTrip = (event: FormEvent): void => {
+        closeModal(event);
 
         const payload = {
             tripId: tripId,
             userId: String(userId),
             guests: Number(inputValue),
-            date: ((event.target as HTMLFormElement)[0] as HTMLInputElement).valueAsDate!.toISOString(),
+            date: ((event.target as HTMLFormElement)[0] as HTMLInputElement).valueAsDate?.toISOString() ?? '',
         };
 
         dispatch(bookingsActionCreator.addBooking(payload));
-        setModal(true);
     };
 
     const changeTotalPrice = (event: ChangeEvent<HTMLInputElement>): void => {
@@ -57,7 +60,7 @@ const Modal: React.FC<IModalProps> = ({ visible, setModal }): JSX.Element => {
                     <Button classes='trip-popup__close' flag={false} onClick={closeModal}>
                         ×
                     </Button>
-                    <form className='trip-popup__form' autoComplete='off' onSubmit={closeModal}>
+                    <form className='trip-popup__form' autoComplete='off' onSubmit={bookTrip}>
                         <TripCardInfo title={title} duration={duration} level={level} />
                         <Label inputHeadingName='Date' classes={classes}>
                             <Input name='date' type='date' min={currentDate} required />
