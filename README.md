@@ -1,46 +1,90 @@
-# Getting Started with Create React App
+# Travel App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a [travel app](https://liubomyr86.github.io/react-travel-app/) created with **React**, **TypeScript**. All trip data load from **API**, **Redux Toolkit** used to work with asynchronous operations.  
+The application contains the following pages:
 
-## Available Scripts
+-   `/sign-up` - sign up page
+-   `/sign-in` - sign in page
+-   `/` - main page with all trips, search and filters
+-   `/trip/:tripId` - trip information page
+-   `/bookings` - list of current user's bookings
 
-In the project directory, you can run:
+All pages contain **Header** and **Footer**.
 
-### `npm start`
+## How the app should work
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+When user navigates to the app, the existence of the token should be checked. If present, the current user data must be loaded. When the data is loaded, the user should get to the main page with a list of all trips. If the token is missing or an error occurs, the user is redirected to the Sign In page. All the time, while the user data is being defined and loaded, the loader should be visible.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Header
 
-### `npm test`
+-   logo is a link to the main page - `/`
+-   navigation block is displayed on all pages except `/sign-up` and `/sign-in`
+-   navigation consists of two elements
+    -   the first element links to the `/bookings` page
+    -   when you hover over the second element, a list appears with the username and Sign Out button
+    -   Sign Out navigates to `/sign-in`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Sign Up
 
-### `npm run build`
+In case of a successful operation, the token must be saved and the user must get to the main page.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-   form contains the following fields:
+    -   Full name
+    -   Email
+    -   Password - must be between 3 and 20 characters long
+-   all fields are required
+-   on Sign Up click, if all fields are valid, user is navigated to `/`
+-   Sign In button leads to the `/sign-in` page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Sign In
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+In case of a successful operation, the token must be saved and the user must get to the main page.
 
-### `npm run eject`
+-   form contains the following fields
+    -   Email
+    -   Password - must be between 3 and 20 characters long
+-   all fields are required
+-   on Sign In click, if all fields are valid, user is navigated to `/`
+-   Sign Up button leads to the `/sign-up` page
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Main page
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+When user navigates to the main page, all trips data should be loaded and displayed.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+-   block with filters contains:
+    -   search bar
+    -   two selects for duration and level
+-   when entering a value in the search bar or changing filters, the corresponding cards should be displayed
+-   trip card contains the following elements:
+    -   picture
+    -   name of the trip
+    -   trip information - duration and level of difficulty
+    -   price
+    -   button leading to the trip page
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Trip page
 
-## Learn More
+When user navigates to the trip page, the relevant trip data should be loaded and displayed. When you click Book a trip button in the modal, there should be a request to book a trip.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   contains complete information about a trip - picture, name, duration, level, description and price
+-   when you click Book a trip button, a modal window opens
+-   modal window
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    -   contains a name, duration and level of the trip
+    -   form contains the following fields:
+        -   Date - planned date, should be in the future
+        -   Number of guests - should be from 1 to 10 inclusive
+    -   final price is equal to the price multiplied by the number of guests
+    -   when you press a close button in the upper right corner, the form closes
+    -   on Book a Trip click, if all fields are valid, the form closes
+
+### Bookings page
+
+When user navigates to the bookings page, all the current user bookings must be loaded and displayed. When you press a button to cancel a trip, a corresponding request must be made. The card should disappear only in case of successful operation.
+
+-   list of bookings
+    -   cards must be sorted by date from nearest to farthest
+-   booking card contains:
+    -   name of the trip
+    -   booking information - number of guests, planned date, final price
+    -   cancel button in the upper right corner - when pressed, the card should disappear from the list
