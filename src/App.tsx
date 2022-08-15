@@ -1,20 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import Footer from 'components/footer/footer';
+import Header from 'components/header/header';
+import Router from 'components/router';
+import { storage } from 'services/services';
+import { StorageKey } from 'common/enums/app/storage-key';
+import { useAppDispatch, useAppSelector } from 'hooks/hooks';
+import { profileActionCreator } from 'state/actions';
+import ReduxToastr from 'react-redux-toastr';
 
 const App = (): JSX.Element => {
+    const dispatch = useAppDispatch();
+
+    const hasToken = Boolean(storage.getItem(StorageKey.TOKEN));
+
+    useEffect(() => {
+        if (hasToken) {
+            dispatch(profileActionCreator.loadCurrentUser());
+        }
+    }, [hasToken, dispatch]);
+
     return (
-        <div className='App'>
-            <header className='App-header'>
-                <img src={logo} className='App-logo' alt='logo' />
-                <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
-                </p>
-                <a className='App-link' href='https://reactjs.org' target='_blank' rel='noopener noreferrer'>
-                    Learn React
-                </a>
-            </header>
-        </div>
+        <>
+            <Header />
+            <Router />
+            <Footer />
+            <ReduxToastr
+                timeOut={4000}
+                newestOnTop={true}
+                preventDuplicates
+                position='top-right'
+                transitionIn='fadeIn'
+                transitionOut='fadeOut'
+                progressBar
+                closeOnToastrClick
+            />
+        </>
     );
 };
 
